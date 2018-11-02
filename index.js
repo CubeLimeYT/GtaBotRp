@@ -4,6 +4,11 @@ const prefix = "//";
 const client = new Discord.Client();
 
 //-----------------------------------------------------------
+bot.on('ready', function () {
+    bot.user.setActivity("//help")
+})
+
+
 
 client.on('message', message => {
 
