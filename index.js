@@ -4,10 +4,14 @@ const prefix = "//";
 const client = new Discord.Client();
 
 //-----------------------------------------------------------
-bot.on('ready', function () {
-    bot.user.setGame("//help")
-})
+let statuses = [`//help`, `joué au rp`, `https://www.youtube.com/channel/UCKwjZKxnVGF2WUNPEHc0RVg`]
+bot.on('ready', () => {
+	setInterval(function() {
+		let status = statuses[Math.floor(Math.random()*statuses.length)];
 
+		bot.user.setPresence({ game: { name: status }, status: 'streaming'});
+	}, 10000)
+});
 
 
 client.on('message', message => {
