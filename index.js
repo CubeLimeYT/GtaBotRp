@@ -14,7 +14,7 @@ client.on('message', message => {
 
 
 	if(message.content === prefix + 'help') {
-		message.reply("Le bot est encore en dévellopement");
+		message.reply("Le bot est encore en dévellopement, mais vous pouvre utiler la commande '//inv' ");
 	}
 	
 	if(message.content === prefix + 'inv'){
