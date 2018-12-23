@@ -561,4 +561,4 @@ bot.on('message', message => {
     }
 });
 
-bot.login(process.ENV.token);
+bot.login(process.env.token);
