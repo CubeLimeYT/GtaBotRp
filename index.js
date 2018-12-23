@@ -4,7 +4,7 @@ const FileSync = require('lowdb/adapters/FileSync')
 
 var bot = new Discord.Client();
 
-var prefix = "§!";
+var prefix = "R*";
 
 const adapter = new FileSync('database.json')
 const db = low(adapter)
