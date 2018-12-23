@@ -84,10 +84,11 @@ bot.on('message', message => {
         break;
           
         case "paper":
-        var search = message.content.substr(8);
+        var search = message.mention.first;
+	var search1 = search.username;
         var name = db.get('personnage')
         //console.log(name);
-        if(name.find({ name: `${search}`}).value()){
+        if(name.find({ name: `${search1}`}).value()){
             //console.log(name);
             var name2 = db.get('personnage').find({ name: `${search}`}).value()
             var author = name2.name;
