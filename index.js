@@ -87,7 +87,7 @@ bot.on('message', message => {
         var search = message.mentions.users.first();
 	var search1 = search.username;
         var name = db.get('personnage')
-        //console.log(name);
+        console.log(search);
         if(name.find({ name: `${search1}`}).value()){
             //console.log(name);
             var name2 = db.get('personnage').find({ name: `${search}`}).value()
