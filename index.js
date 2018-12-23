@@ -505,7 +505,7 @@ bot.on('message', message => {
         break;
         case "permisof":
         var gMember = message.guild.member(message.mentions.users.first());
-        if(gMemeber = null){
+        if(gMemeber == null){
 		message.reply("member no find, ta vu mon english est bien")
 	}else{
         var GMember = gMember.user.username;
