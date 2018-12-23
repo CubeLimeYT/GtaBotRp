@@ -505,9 +505,6 @@ bot.on('message', message => {
         break;
         case "permisof":
         var gMember = message.guild.member(message.mentions.users.first());
-        if(gMemeber == null){
-		message.reply("member no find, ta vu mon english est bien")
-	}else{
         var GMember = gMember.user.username;
         var personajes = db.get('permis');
         if(personajes.find({ name: `${GMember}`})){
@@ -559,7 +556,7 @@ bot.on('message', message => {
         }else{
             message.reply(`${GMember} n'a pas était trouvé`)
         }
-	}
+	
         break;
     }
 });
