@@ -84,7 +84,7 @@ bot.on('message', message => {
         break;
           
         case "paper":
-        var search = message.mention.first;
+        var search = message.mentions.users.first();
 	var search1 = search.username;
         var name = db.get('personnage')
         //console.log(name);
