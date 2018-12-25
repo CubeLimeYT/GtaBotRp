@@ -24,6 +24,30 @@ bot.on('ready', () => {
     console.log("Bot lancer !");
 });
 
+bot.on('message',async message => {
+    if(message.content.startsWith(prefix + "restart")) {
+        if(message.author.id !== "307231625459007488") return message.reply('Vous n\'êtes pas le propriétaire du bot');
+        message.channel.send('**Redémarrage**').then(msg => {
+            setTimeout(() => {
+               msg.edit('**Redémarrage..**');
+            },1000);
+            setTimeout(() => {
+               msg.edit('**Redémarrage...**');
+            },2000);
+        console.log(`${message.author.tag} [ ${message.author.id} ] has restarted the bot.`);
+        console.log(`Restarting..`);
+        setTimeout(() => {
+            bot.destroy();
+            bot.login(process.env.SECRET);
+        },3000);
+          setTimeout(() => {
+               msg.edit('Bot redémarré ✅');
+            },2000);
+        });
+        
+    }
+});
+
 console.log( db.get('personnage').find({name:'Steven-ADev'}).value() );
 
 bot.on('message', message => {
