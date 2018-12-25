@@ -84,26 +84,30 @@ bot.on('message', message => {
         break;
           
         case "paper":
-        var search = message.mentions.users.first();
-	var search1 = search.username;
-        var name = db.get('personnage')
-        console.log(search1);
-        if(name.find({ name: `${search1}`}).value()){
-            //console.log(name);
-            var name2 = db.get('personnage').find({ name: `${search}`}).value()
-            var author = name2.name;
-            var searchfound = name2.present;
-            message.channel.send(`Personnage de ${author}, ${searchfound}`);    
-        }else{
-            //console.log(name);
-            message.channel.send(`${search} n'est pas dans la base de donée`);
+        if(!message.mentions.users.first()) return message.reply("Utilisateur non spécifié");
+        else{
+          var search = message.guild.member(message.mentions.users.first()); 
+          var name = db.get('personnage')
+          //console.log(name);
+          if(name.find({ name: `${search.username}`}).value()){
+              //console.log(name);
+              var name2 = db.get('personnage').find({ name: `${search.username}`}).value()
+              var author = name2.name;
+              var searchfound = name2.present;
+              message.channel.send(`Personnage de ${author}, ${searchfound}`);    
+          }else{
+              //console.log(name);
+              message.channel.send(`${search} n'est pas dans la base de donée`);
+          }
         }
 
 
         break;
 
         case "permis":
-        var gMember = message.guild.member(message.mentions.users.first());
+        if(!message.mentions.users.first()) return message.reply("Utilisateur non spécifié");
+        else{
+          var gMember = message.guild.member(message.mentions.users.first());
         //console.log(gMember);
         var TypePermis = message.content.substr(31);
         //console.log(TypePermis)
@@ -270,6 +274,11 @@ bot.on('message', message => {
                 let Staff = message.guild.owner;
                 message.channel.send(`${Staff}, vous n'avez pas de rôle sur le serveur comportant le nom "Permis Avion à Moteur"`);
             }
+         }
+          
+        if(!TypePermis === "AvM true" || "AvR true" || "Hl true" || "PdL true" || "moto true" || "voiture true"){
+           message.channel.send(`Veuillez spécifier le type de permis, ps: ${prefix}help 😉`);
+          }
         }
 
         break;
@@ -331,235 +340,241 @@ bot.on('message', message => {
         break;
 
         case "removepermis":
-        var gMember = message.guild.member(message.mentions.users.first());
-        //console.log(gMember);
-        var TypePermis = message.content.substr(37);
-        //console.log(TypePermis)
+        if(!message.mentions.users.first()) return message.reply("Utilisateur non spécifié");
+        else{
+          var gMember = message.guild.member(message.mentions.users.first());
+          //console.log(gMember);
+          var TypePermis = message.content.substr(37);
+          //console.log(TypePermis)
 
-        if(TypePermis === "voiture"){
-            if(message.guild.roles.find(r => r.name === "Permis voiture")){
-                let RMember = message.member.guild.roles;
-                if(RMember.find(r => r.name === "Auto-école" || "Policier")){
-                    //console.log(gMember)
-                    var grole = message.guild.roles.find(r => r.name === "Permis voiture");
+          if(TypePermis === "voiture"){
+              if(message.guild.roles.find(r => r.name === "Permis voiture")){
+                  let RMember = message.member.guild.roles;
+                  if(RMember.find(r => r.name === "Auto-école" || "Policier")){
+                      //console.log(gMember)
+                      var grole = message.guild.roles.find(r => r.name === "Permis voiture");
 
-                    var author1 = message.author.username.toString();
-                    var VotuPermis = db.get('permis');
-                    var VoituPermis = VotuPermis.find({ name: `${author1}`}).value()
-                    if(VoituPermis.PermisVoiture === "True"){
-                        gMember.removeRole(grole.id);
-                        db.get('permis').find({ name: `${author1}`}).assign({ PermisVoiture: "None" }).write()
-                        message.reply(` permis voiture de ${gMember} retirer avec succès`);
-                    }else{
-                        message.reply(` ${gMember} n'a pas le permis voiture`)
-                    }
-                    
-                }else{
-                    message.reply('Vous n\'avez pas de rôle comportant le nom "Auto-école", "Policier"');
-                }
-                
-            }else{
-                let Staff = message.guild.owner;
-                message.channel.send(`${Staff}, vous n'avez pas de rôle sur le serveur comportant le nom "Permis voiture"`);
-            }
-        }
+                      var author1 = message.author.username.toString();
+                      var VotuPermis = db.get('permis');
+                      var VoituPermis = VotuPermis.find({ name: `${author1}`}).value()
+                      if(VoituPermis.PermisVoiture === "True"){
+                          gMember.removeRole(grole.id);
+                          db.get('permis').find({ name: `${author1}`}).assign({ PermisVoiture: "None" }).write()
+                          message.reply(` permis voiture de ${gMember} retirer avec succès`);
+                      }else{
+                          message.reply(` ${gMember} n'a pas le permis voiture`)
+                      }
 
-        if(TypePermis === "moto"){
-            if(message.guild.roles.find(r => r.name === "Permis moto")){
-                let RMember = message.member.guild.roles;
-                if(RMember.find(r => r.name === "Auto-école" || "Policier")){
-                    //console.log(gMember)
-                    var grole = message.guild.roles.find(r => r.name === "Permis moto");
+                  }else{
+                      message.reply('Vous n\'avez pas de rôle comportant le nom "Auto-école", "Policier"');
+                  }
 
-                    var author1 = message.author.username.toString();
-                    var MotoPermis = db.get('permis');
-                    var MotardPermis = MotoPermis.find({ name: `${author1}`}).value()
-                    if(MotardPermis.PermisMoto === "True"){
-                        gMember.removeRole(grole.id);
-                        db.get('permis').find({ name: `${author1}`}).assign({ PermisMoto: "None" }).write()
-                        message.reply(` permis moto de ${gMember} retirer avec succès`);
-                    }else{
-                        message.reply(` ${gMember} n'a pas le permis moto`)
-                    }
-                    
-                }else{
-                    message.reply('Vous n\'avez pas de rôle comportant le nom "Auto-école", "Policier"');
-                }
-                
-            }else{
-                let Staff = message.guild.owner;
-                message.channel.send(`${Staff}, vous n'avez pas de rôle sur le serveur comportant le nom "Permis moto"`);
-            }
-        }
+              }else{
+                  let Staff = message.guild.owner;
+                  message.channel.send(`${Staff}, vous n'avez pas de rôle sur le serveur comportant le nom "Permis voiture"`);
+              }
+          }
 
-        if(TypePermis === "Poid-Lourd"){
-            if(message.guild.roles.find(r => r.name === "Permis Poid-Lourd")){
-                let RMember = message.member.guild.roles;
-                if(RMember.find(r => r.name === "Auto-école" || "Policier")){
-                    //console.log(gMember)
-                    var grole = message.guild.roles.find(r => r.name === "Permis Poid-Lourd");
+          if(TypePermis === "moto"){
+              if(message.guild.roles.find(r => r.name === "Permis moto")){
+                  let RMember = message.member.guild.roles;
+                  if(RMember.find(r => r.name === "Auto-école" || "Policier")){
+                      //console.log(gMember)
+                      var grole = message.guild.roles.find(r => r.name === "Permis moto");
 
-                    var author1 = message.author.username.toString();
-                    var PdLPermis = db.get('permis');
-                    var PdlPermis = PdLPermis.find({ name: `${author1}`}).value()
-                    if(PdlPermis.PermisPoidLourd === "True"){
-                        gMember.removeRole(grole.id);
-                        db.get('permis').find({ name: `${author1}`}).assign({ PermisPoidLourd: "None" }).write()
-                        message.reply(` permis Poid-lourd de ${gMember} retirer avec succès`);
-                    }else{
-                        message.reply(` ${gMember} n'a pas le permis Poid-Lourd`);
-                    }
-                    
-                }else{
-                    message.reply('Vous n\'avez pas de rôle comportant le nom "Auto-école", "Policier"');
-                }
-                
-            }else{
-                let Staff = message.guild.owner;
-                message.channel.send(`${Staff}, vous n'avez pas de rôle sur le serveur comportant le nom "Permis Poid-Lourd"`);
-            }
-        }
+                      var author1 = message.author.username.toString();
+                      var MotoPermis = db.get('permis');
+                      var MotardPermis = MotoPermis.find({ name: `${author1}`}).value()
+                      if(MotardPermis.PermisMoto === "True"){
+                          gMember.removeRole(grole.id);
+                          db.get('permis').find({ name: `${author1}`}).assign({ PermisMoto: "None" }).write()
+                          message.reply(` permis moto de ${gMember} retirer avec succès`);
+                      }else{
+                          message.reply(` ${gMember} n'a pas le permis moto`)
+                      }
 
-        if(TypePermis === "AvM"){
-            if(message.guild.roles.find(r => r.name === "Permis Avion à Moteur")){
-                let RMember = message.member.guild.roles;
-                if(RMember.find(r => r.name === "Auto-école" || "Policier")){
-                    //console.log(gMember)
-                    var grole = message.guild.roles.find(r => r.name === "Permis Avion à Moteur");
+                  }else{
+                      message.reply('Vous n\'avez pas de rôle comportant le nom "Auto-école", "Policier"');
+                  }
 
-                    var author1 = message.author.username.toString();
-                    var AvMPermis = db.get('permis');
-                    var AvmPermis = AvMPermis.find({ name: `${author1}`}).value()
-                    if(AvmPermis.PermisAvionAMoteur === "True"){
-                        gMember.removeRole(grole.id);
-                        db.get('permis').find({ name: `${author1}`}).assign({ PermisAvionAMoteur: "None" }).write()
-                        message.reply(` permis Avion à Moteur de ${gMember} retirer avec succès`);
-                    }else{
-                        message.reply(` ${gMember} n'a pas le permis Avion à Moteur`);
-                    }
-                    
-                }else{
-                    message.reply('Vous n\'avez pas de rôle comportant le nom "Auto-école", "Policier"');
-                }
-                
-            }else{
-                let Staff = message.guild.owner;
-                message.channel.send(`${Staff}, vous n'avez pas de rôle sur le serveur comportant le nom "Permis Avion à Moteur"`);
-            }
-        }
+              }else{
+                  let Staff = message.guild.owner;
+                  message.channel.send(`${Staff}, vous n'avez pas de rôle sur le serveur comportant le nom "Permis moto"`);
+              }
+          }
 
-        if(TypePermis === "AvR"){
-            if(message.guild.roles.find(r => r.name === "Permis Avion à Réaction")){
-                let RMember = message.member.guild.roles;
-                if(RMember.find(r => r.name === "Auto-école" || "Policier")){
-                    //console.log(gMember)
-                    var grole = message.guild.roles.find(r => r.name === "Permis Avion à Réaction");
+          if(TypePermis === "Poid-Lourd"){
+              if(message.guild.roles.find(r => r.name === "Permis Poid-Lourd")){
+                  let RMember = message.member.guild.roles;
+                  if(RMember.find(r => r.name === "Auto-école" || "Policier")){
+                      //console.log(gMember)
+                      var grole = message.guild.roles.find(r => r.name === "Permis Poid-Lourd");
 
-                    var author1 = message.author.username.toString();
-                    var AvRPermis = db.get('permis');
-                    var AvrPermis = AvRPermis.find({ name: `${author1}`}).value()
-                    if(AvrPermis.PermisAvionAReaction === "True"){
-                        gMember.removeRole(grole.id);
-                        db.get('permis').find({ name: `${author1}`}).assign({ PermisAvionAReaction: "None" }).write()
-                        message.reply(` permis Avion à Réaction de ${gMember} retirer avec succès`);
-                    }else{
-                        message.reply(` ${gMember} n'a pas le permis Avion à Réaction`);
-                    }
-                    
-                }else{
-                    message.reply('Vous n\'avez pas de rôle comportant le nom "Auto-école", "Policier"');
-                }
-                
-            }else{
-                let Staff = message.guild.owner;
-                message.channel.send(`${Staff}, vous n'avez pas de rôle sur le serveur comportant le nom "Permis Avion à Réaction"`);
-            }
-        }
+                      var author1 = message.author.username.toString();
+                      var PdLPermis = db.get('permis');
+                      var PdlPermis = PdLPermis.find({ name: `${author1}`}).value()
+                      if(PdlPermis.PermisPoidLourd === "True"){
+                          gMember.removeRole(grole.id);
+                          db.get('permis').find({ name: `${author1}`}).assign({ PermisPoidLourd: "None" }).write()
+                          message.reply(` permis Poid-lourd de ${gMember} retirer avec succès`);
+                      }else{
+                          message.reply(` ${gMember} n'a pas le permis Poid-Lourd`);
+                      }
 
-        if(TypePermis === "Hl"){
-            if(message.guild.roles.find(r => r.name === "Permis Hélicoptère")){
-                let RMember = message.member.guild.roles;
-                if(RMember.find(r => r.name === "Auto-école" || "Policier")){
-                    //console.log(gMember)
-                    var grole = message.guild.roles.find(r => r.name === "Permis Hélicoptère");
+                  }else{
+                      message.reply('Vous n\'avez pas de rôle comportant le nom "Auto-école", "Policier"');
+                  }
 
-                    var author1 = message.author.username.toString();
-                    var HlPermis = db.get('permis');
-                    var hLPermis = HlPermis.find({ name: `${author1}`}).value()
-                    if(hLPermis.PermisHelico === "True"){
-                        gMember.removeRole(grole.id);
-                        db.get('permis').find({ name: `${author1}`}).assign({ PermisHelico: "None" }).write()
-                        message.reply(` permis Hélicoptère de ${gMember} retirer avec succès`);
-                    }else{
-                        message.reply(` ${gMember} n'a pas le permis Hélicoptère`);
-                    }
-                    
-                }else{
-                    message.reply('Vous n\'avez pas de rôle comportant le nom "Auto-école", "Policier"');
-                }
-                
-            }else{
-                let Staff = message.guild.owner;
-                message.channel.send(`${Staff}, vous n'avez pas de rôle sur le serveur comportant le nom "Permis Hélicoptère"`);
-            }
+              }else{
+                  let Staff = message.guild.owner;
+                  message.channel.send(`${Staff}, vous n'avez pas de rôle sur le serveur comportant le nom "Permis Poid-Lourd"`);
+              }
+          }
+
+          if(TypePermis === "AvM"){
+              if(message.guild.roles.find(r => r.name === "Permis Avion à Moteur")){
+                  let RMember = message.member.guild.roles;
+                  if(RMember.find(r => r.name === "Auto-école" || "Policier")){
+                      //console.log(gMember)
+                      var grole = message.guild.roles.find(r => r.name === "Permis Avion à Moteur");
+
+                      var author1 = message.author.username.toString();
+                      var AvMPermis = db.get('permis');
+                      var AvmPermis = AvMPermis.find({ name: `${author1}`}).value()
+                      if(AvmPermis.PermisAvionAMoteur === "True"){
+                          gMember.removeRole(grole.id);
+                          db.get('permis').find({ name: `${author1}`}).assign({ PermisAvionAMoteur: "None" }).write()
+                          message.reply(` permis Avion à Moteur de ${gMember} retirer avec succès`);
+                      }else{
+                          message.reply(` ${gMember} n'a pas le permis Avion à Moteur`);
+                      }
+
+                  }else{
+                      message.reply('Vous n\'avez pas de rôle comportant le nom "Auto-école", "Policier"');
+                  }
+
+              }else{
+                  let Staff = message.guild.owner;
+                  message.channel.send(`${Staff}, vous n'avez pas de rôle sur le serveur comportant le nom "Permis Avion à Moteur"`);
+              }
+          }
+
+          if(TypePermis === "AvR"){
+              if(message.guild.roles.find(r => r.name === "Permis Avion à Réaction")){
+                  let RMember = message.member.guild.roles;
+                  if(RMember.find(r => r.name === "Auto-école" || "Policier")){
+                      //console.log(gMember)
+                      var grole = message.guild.roles.find(r => r.name === "Permis Avion à Réaction");
+
+                      var author1 = message.author.username.toString();
+                      var AvRPermis = db.get('permis');
+                      var AvrPermis = AvRPermis.find({ name: `${author1}`}).value()
+                      if(AvrPermis.PermisAvionAReaction === "True"){
+                          gMember.removeRole(grole.id);
+                          db.get('permis').find({ name: `${author1}`}).assign({ PermisAvionAReaction: "None" }).write()
+                          message.reply(` permis Avion à Réaction de ${gMember} retirer avec succès`);
+                      }else{
+                          message.reply(` ${gMember} n'a pas le permis Avion à Réaction`);
+                      }
+
+                  }else{
+                      message.reply('Vous n\'avez pas de rôle comportant le nom "Auto-école", "Policier"');
+                  }
+
+              }else{
+                  let Staff = message.guild.owner;
+                  message.channel.send(`${Staff}, vous n'avez pas de rôle sur le serveur comportant le nom "Permis Avion à Réaction"`);
+              }
+          }
+
+          if(TypePermis === "Hl"){
+              if(message.guild.roles.find(r => r.name === "Permis Hélicoptère")){
+                  let RMember = message.member.guild.roles;
+                  if(RMember.find(r => r.name === "Auto-école" || "Policier")){
+                      //console.log(gMember)
+                      var grole = message.guild.roles.find(r => r.name === "Permis Hélicoptère");
+
+                      var author1 = message.author.username.toString();
+                      var HlPermis = db.get('permis');
+                      var hLPermis = HlPermis.find({ name: `${author1}`}).value()
+                      if(hLPermis.PermisHelico === "True"){
+                          gMember.removeRole(grole.id);
+                          db.get('permis').find({ name: `${author1}`}).assign({ PermisHelico: "None" }).write()
+                          message.reply(` permis Hélicoptère de ${gMember} retirer avec succès`);
+                      }else{
+                          message.reply(` ${gMember} n'a pas le permis Hélicoptère`);
+                      }
+
+                  }else{
+                      message.reply('Vous n\'avez pas de rôle comportant le nom "Auto-école", "Policier"');
+                  }
+
+              }else{
+                  let Staff = message.guild.owner;
+                  message.channel.send(`${Staff}, vous n'avez pas de rôle sur le serveur comportant le nom "Permis Hélicoptère"`);
+              }
+          }
         }
         break;
         case "permisof":
-        var gMember = message.guild.member(message.mentions.users.first());
-        var GMember = gMember.user.username;
-        var personajes = db.get('permis');
-        if(personajes.find({ name: `${GMember}`})){
-            let allpermis = db.get('permis').find({ name: `${GMember}`}).value();
-            let hola = allpermis.PermisVoiture;
-            let hola1 = allpermis.PermisMoto;
-            let hola2 = allpermis.PermisAvionAMoteur;
-            let hola3 = allpermis.PermisAvionAReaction;
-            let hola4 = allpermis.PermisHelico;
-            let hola5 = allpermis.PermisPoidLourd;
-            console.log(hola)
-            message.channel.send({embed: {
-                color: 0x00FF00,
-                title: `Permis de ${GMember}`,
-                fields: [{
-                      name: "Permis voiture",
-                      value: `Permis voiture ${hola}`,
-                      inline: true,
-                    },
-                    {
-                      name: "Permis moto",
-                      value: `Permis moto ${hola1}`,
-                      inline: true,
-                    },
-                    {
-                      name: "Permis Avion à moteur",
-                      value: `Permis avion à moteur ${hola2}`,
-                      inline: true,
-                    },
-                    {
-                        name: "Permis avion à réaction",
-                        value: `Permis avion à réaction ${hola3}`,
+        if(!message.mentions.users.first()) return message.reply("Utilisateur non spécifié");
+        else{
+          var gMember = message.guild.member(message.mentions.users.first());
+          //console.log(gMember);
+          var GMember = gMember.user.username;
+          var personajes = db.get('permis');
+          if(personajes.find({ name: `${GMember}`})){
+              let allpermis = db.get('permis').find({ name: `${GMember}`}).value();
+              let hola = allpermis.PermisVoiture;
+              let hola1 = allpermis.PermisMoto;
+              let hola2 = allpermis.PermisAvionAMoteur;
+              let hola3 = allpermis.PermisAvionAReaction;
+              let hola4 = allpermis.PermisHelico;
+              let hola5 = allpermis.PermisPoidLourd;
+              console.log(hola)
+              message.channel.send({embed: {
+                  color: 0x00FF00,
+                  title: `Permis de ${GMember}`,
+                  fields: [{
+                        name: "Permis voiture",
+                        value: `Permis voiture ${hola}`,
                         inline: true,
-                    },
-                    {
-                        name: "Permis hélicoptère",
-                        value: `Permis hélicoptère ${hola4}`,
+                      },
+                      {
+                        name: "Permis moto",
+                        value: `Permis moto ${hola1}`,
                         inline: true,
-                    },
-                    {
-                        name: "Permis Poid-Lourd",
-                        value: `Permis Poid-Lourd ${hola5}`,
+                      },
+                      {
+                        name: "Permis Avion à moteur",
+                        value: `Permis avion à moteur ${hola2}`,
                         inline: true,
-                    }
-                 ],
-                  timestamp: new Date()
-                }
-            });
-        }else{
-            message.reply(`${GMember} n'a pas était trouvé`)
+                      },
+                      {
+                          name: "Permis avion à réaction",
+                          value: `Permis avion à réaction ${hola3}`,
+                          inline: true,
+                      },
+                      {
+                          name: "Permis hélicoptère",
+                          value: `Permis hélicoptère ${hola4}`,
+                          inline: true,
+                      },
+                      {
+                          name: "Permis Poid-Lourd",
+                          value: `Permis Poid-Lourd ${hola5}`,
+                          inline: true,
+                      }
+                   ],
+                    timestamp: new Date()
+                  }
+              });
+          }else{
+              message.reply(`${GMember} n'a pas était trouvé`)
+          }
         }
-	
         break;
     }
 });
 
-bot.login(process.env.token);
+bot.login(process.env.SECRET);
