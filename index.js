@@ -58,7 +58,7 @@ bot.on('message', message => {
 		
 		else{
 		let guildId = message.guild.id;
-		let userId = message.mentions.first.user.first.id
+		let userId = message.mentions.first.id;
 		getUserBalance(guildId, userId).then(user => console.log(user))
 		}
 		
