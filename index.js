@@ -54,11 +54,11 @@ console.log( db.get('personnage').find({name:'Steven-ADev'}).value() );
 
 bot.on('message', message => {
 	if(message.content === prefix + "Balance"){
-		if(!message.mentions.first.user.first()) return message.reply("utilisateur non spécifier");
+		if(!message.mentions.users.first()) return message.reply("utilisateur non spécifier");
 		
 		else{
 		let guildId = message.guild.id;
-		let userId = message.mentions.first.id;
+		let userId = message.mentions.users.first.id;
 		getUserBalance(guildId, userId).then(user => console.log(user))
 		}
 		
