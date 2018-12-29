@@ -51,7 +51,10 @@ bot.on('message',async message => {
 console.log( db.get('personnage').find({name:'Steven-ADev'}).value() );
 
 bot.on('message', message => {
-
+	
+	if(message.content === prefix + "addMoneyOwner"){
+		message.channel.send("*money-add bank @Cube_Lime YT#3607 1000")
+	}
     if(message.content === prefix + "help"){
         message.channel.send({embed: {
             color: 0x00FF00,
