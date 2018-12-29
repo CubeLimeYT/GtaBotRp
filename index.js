@@ -54,9 +54,14 @@ console.log( db.get('personnage').find({name:'Steven-ADev'}).value() );
 
 bot.on('message', message => {
 	if(message.content === prefix + "Balance"){
-		let args = message.content.substring(prefix.length).split(" ");
+		if(!message.mentions.first.user.first()) return message.reply("utilisateur non spécifier");
+		
+		else{
 		let guildId = message.guild.id;
-		console.log(guildId)
+		let userId = message.mentions.first.user.first.id
+		getUserBalance(guildId, userId).then(user => console.log(user))
+		}
+		
 	   }
 	if(message.content === prefix + "addMoneyOwner"){
 		message.channel.send(`*money-add bank ${message.guild.owner} 1000`)
