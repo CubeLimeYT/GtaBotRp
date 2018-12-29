@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 const {Client} = require('unb-api');
-const client = new {Client}(process.env.UNBTOKEN);
+const client = new Client(process.env.UNBTOKEN);
 
 var bot = new Discord.Client();
 
@@ -59,7 +59,7 @@ bot.on('message', message => {
 		else{
 		let guildId = message.guild.id;
 		let userId = message.mentions.users.first.id;
-		getUserBalance(guildId, userId).then(user => console.log(user))
+		client.getUserBalance(guildId, userId).then(user => console.log(user))
 		}
 		
 	   }
