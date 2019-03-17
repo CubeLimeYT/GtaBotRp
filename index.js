@@ -99,7 +99,7 @@ bot.on('message', message => {
 		.setColor("RANDOM")
 		.addField(`${prefix}dmap`, `Pour afficher les département de la map`)
 		.addField(`${prefix}bmap`, `Pour afficher les arrêts de bus de la map`)
-		.setFooter(`Voilà des mise à jour arriveront`)
+		.setFooter(`EN cours de mise à jour !`)
 		message.channel.send(helpEmbed)
 	}
 
