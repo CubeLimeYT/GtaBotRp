@@ -102,6 +102,15 @@ bot.on('message', message => {
 		.setFooter(`EN cours de mise à jour !`)
 		message.channel.send(helpEmbed)
 	}
+	
+	if(message.content === prefix + 'dmap' ) {
+		var dmapEmbed = new Discord.RichEmbed()
+		.setDescription('Voici les département de GTA V')
+		.setColor('RANDOM')
+		.addField('Voilà','photo')
+		.setFooter('Suggestions ?')
+		message.channel.send(dmapEmbed)
+	}
 
     if(!message.content.startsWith(prefix)) return;
     var args = message.content.substring(prefix.length).split(" ");
