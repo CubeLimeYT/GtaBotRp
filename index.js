@@ -96,6 +96,7 @@ bot.on('message', message => {
 	if(message.content === prefix + 'aide' ) {
 		var helpEmbed = new Discord.RichEmbed()
 		.setDescription('Voici les commandes disponible pour le moment ')
+		.setColor("RANDOM")
 		.addField(`${prefix}dmap`, `Pour afficher les département de la map`)
 		.addField(`${prefix}bmap`, `Pour afficher les arrêts de bus de la map`)
 		.setFooter(`Voilà des mise à jour arriveront`)
