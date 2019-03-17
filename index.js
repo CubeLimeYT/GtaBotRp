@@ -104,12 +104,7 @@ bot.on('message', message => {
 	}
 	
 	if(message.content === prefix + 'dmap' ) {
-		var dmapEmbed = new Discord.RichEmbed()
-		.setDescription('Voici les département de GTA V')
-		.setColor('RANDOM')
-		.addField('Voilà','https://www.google.com/search?q=gta+5+map&client=firefox-b-d&tbm=isch&source=iu&ictx=1&fir=gir5PEihgp6wKM%253A%252Cp2eWRRLhCnwovM%252C_&vet=1&usg=AI4_-kTko39iO1eyZ6chtwfY5umPi8edoQ&sa=X&ved=2ahUKEwjajOi5kInhAhXJ5eAKHXx-B8MQ9QEwAHoECAAQBA&biw=1366&bih=654#imgrc=kFlhvfVQEtkXbM:&vet=1')
-		.setFooter('Suggestions ?')
-		message.channel.send(dmapEmbed)
+		message.reply('https://www.google.com/search?q=gta+5+map&client=firefox-b-d&tbm=isch&source=iu&ictx=1&fir=gir5PEihgp6wKM%253A%252Cp2eWRRLhCnwovM%252C_&vet=1&usg=AI4_-kTko39iO1eyZ6chtwfY5umPi8edoQ&sa=X&ved=2ahUKEwjajOi5kInhAhXJ5eAKHXx-B8MQ9QEwAHoECAAQBA&biw=1366&bih=654#imgrc=kFlhvfVQEtkXbM:&vet=1')
 	}
 
     if(!message.content.startsWith(prefix)) return;
