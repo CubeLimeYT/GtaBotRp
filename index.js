@@ -14,7 +14,7 @@ const db = low(adapter)
 db.defaults({ personnage: [], permis: []})
     .write()
 
-let statuses = [`${prefix}help`, 'GTA V Rp']
+let statuses = [`${prefix}aide`, 'GTA V Rp']
 
 bot.on('ready', () => {
     setInterval(function() {
