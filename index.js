@@ -93,6 +93,10 @@ bot.on('message', message => {
               timestamp: new Date()
             }
         })};
+	
+	if(message.content === prefix + 'aide' ) {
+	
+	}
 
     if(!message.content.startsWith(prefix)) return;
     var args = message.content.substring(prefix.length).split(" ");
