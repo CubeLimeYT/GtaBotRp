@@ -3,8 +3,7 @@ const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 const {Client} = require('unb-api');
 const client = new Client(process.env.UNBTOKEN);
-
-var bot = new Discord.Client();
+const bot = new Discord.Client();
 
 var prefix = "R*";
 
@@ -95,7 +94,12 @@ bot.on('message', message => {
         })};
 	
 	if(message.content === prefix + 'aide' ) {
-	
+		var helpEmbed = new Discord.RichEmbed()
+		.setDescription('Voici les commandes disponible pour le moment ')
+		.addField(`${prefix}dmap`, `Pour afficher les département de la map`)
+		.addField(`${prefix}bmap`, `Pour afficher les arrêts de bus de la map`)
+		.setFooter(`Voilà des mise à jour arriveront`)
+		message.channel.send(helpEmbed)
 	}
 
     if(!message.content.startsWith(prefix)) return;
