@@ -104,7 +104,7 @@ bot.on('message', message => {
 	}
 	
 	if (message.content === prefix + 'dmap') {
-        message.channel.send ( {files: ["./images/" + 1 + ".JPG"]} ) 
+        message.channel.send ( {files: ["./images/" + 1 + ".jpg"]} ) 
     }
 	
     if(!message.content.startsWith(prefix)) return;
