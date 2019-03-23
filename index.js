@@ -108,7 +108,7 @@ bot.on('message', message => {
     }
 
 	if (message.content === prefix + 'bmap') {
-	message.channel.send ( {files: ["./images/" + 2 + ".jpg"]} )
+	message.channel.send ( {files: ["./images/" + 2 + ".png"]} )
     }
 					
 	
