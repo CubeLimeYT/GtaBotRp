@@ -122,11 +122,7 @@ bot.on('message', message => {
         }
     }
 })
-	if (message.content === '@👌 Certifié 👌 qui pour Rp ?') {
-		message.react('✅')
-		message.recat('❎')
-	}
-	    
+
 					
 	
     if(!message.content.startsWith(prefix)) return;
