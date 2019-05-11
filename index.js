@@ -13,7 +13,7 @@ const db = low(adapter)
 db.defaults({ personnage: [], permis: []})
     .write()
 
-let statuses = [`${prefix}aide`, 'GTA V Rp']
+let statuses = [`${prefix}aide`, 'GTA V Rp | Version 1.2']
 
 bot.on('ready', () => {
     setInterval(function() {
@@ -21,7 +21,7 @@ bot.on('ready', () => {
 
 		bot.user.setPresence({ game: { name: status }, status: 'online'});
 	}, 10000)
-    bot.user.setActivity("GTA V Rp");
+    bot.user.setActivity("GTA V Rp | Version 1.2 ");
     console.log("Bot lancer !");
 });
 
@@ -99,6 +99,7 @@ bot.on('message', message => {
 		.setColor("RANDOM")
 		.addField(`${prefix}dmap`, `Pour afficher les département de la map`)
 		.addField(`${prefix}bmap`, `Pour afficher les arrêts de bus de la map`)
+		.addFielf(`${prefix}rp`, `Pour afficher une sondage pour savoir qui veut Rp`
 		.setFooter(`EN cours de mise à jour !`)
 		message.channel.send(helpEmbed)
 	}
