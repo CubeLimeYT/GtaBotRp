@@ -112,9 +112,13 @@ bot.on('message', message => {
     }
 	if (message.content === prefix + 'rp') {
 		message.channel.send('@👌 Certifié 👌 qui pour Rp ?')
-		message.react('✅')
-		message.react('❎')
 	}
+	
+	if (message.content === '@👌 Certifié 👌 qui pour Rp ?') {
+		message.react('✅')
+		message.recat('❎')
+	}
+	    
 					
 	
     if(!message.content.startsWith(prefix)) return;
