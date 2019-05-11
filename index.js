@@ -110,6 +110,9 @@ bot.on('message', message => {
 	if (message.content === prefix + 'bmap') {
 	message.channel.send ( {files: ["./images/" + 2 + ".png"]} )
     }
+	if (message.content === prefix + 'rp') {
+		message.channel.send('@👌 Certifié 👌 qui pour Rp ?')
+	}
 					
 	
     if(!message.content.startsWith(prefix)) return;
