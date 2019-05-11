@@ -637,6 +637,7 @@ bot.on('message', message => {
 
 	bot.on('message', async message => {
     		if (message.content === prefix + 'rp') {
+			message.author.delete();
        		 if(message.guild.roles.find(r => r.name === "👌 Certifié 👌")){
             	let role = message.guild.roles.find(r => r.name === "👌 Certifié 👌")
            	 let msg = await message.channel.send(`${role} qui pour Rp ?`);
