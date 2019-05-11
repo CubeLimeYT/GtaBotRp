@@ -110,14 +110,18 @@ bot.on('message', message => {
 	if (message.content === prefix + 'bmap') {
 	message.channel.send ( {files: ["./images/" + 2 + ".png"]} )
     }
-	if (message.content === prefix + 'rp') {
+	bot.on('message', async message => {
+    		if (message.content === prefix + 'rp') {
        		 if(message.guild.roles.find(r => r.name === "👌 Certifié 👌")){
-           	 message.channel.send('@&550796616110440458 qui pour Rp ?')
+            	let role = message.guild.roles.find(r => r.name === "👌 Certifié 👌")
+           	 let msg = await message.channel.send(`${role} qui pour Rp ?`);
+            	msg.react('✅');
+           	 msg.react('❎');
         }else{
-            console.log("I don't find role Certifié")
+            console.log("I don't find role");
         }
     }
-	
+})
 	if (message.content === '@👌 Certifié 👌 qui pour Rp ?') {
 		message.react('✅')
 		message.recat('❎')
