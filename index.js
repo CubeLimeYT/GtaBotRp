@@ -111,8 +111,12 @@ bot.on('message', message => {
 	message.channel.send ( {files: ["./images/" + 2 + ".png"]} )
     }
 	if (message.content === prefix + 'rp') {
-		message.channel.send('${@👌 Certifié 👌} qui pour Rp ?')
-	}
+       		 if(message.guild.roles.find(r => r.name === "👌 Certifié 👌")){
+           	 message.channel.send('@&550796616110440458 qui pour Rp ?')
+        }else{
+            console.log("I don't find role Certifié")
+        }
+    }
 	
 	if (message.content === '@👌 Certifié 👌 qui pour Rp ?') {
 		message.react('✅')
