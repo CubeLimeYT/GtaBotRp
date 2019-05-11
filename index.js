@@ -110,18 +110,7 @@ bot.on('message', message => {
 	if (message.content === prefix + 'bmap') {
 	message.channel.send ( {files: ["./images/" + 2 + ".png"]} )
     }
-	bot.on('message', async message => {
-    		if (message.content === prefix + 'rp') {
-       		 if(message.guild.roles.find(r => r.name === "👌 Certifié 👌")){
-            	let role = message.guild.roles.find(r => r.name === "👌 Certifié 👌")
-           	 let msg = await message.channel.send(`${role} qui pour Rp ?`);
-            	msg.react('✅');
-           	 msg.react('❎');
-        }else{
-            console.log("I don't find role");
-        }
-    }
-})
+
 
 					
 	
@@ -643,6 +632,19 @@ bot.on('message', message => {
           }
         }
         break;
+    }
+});
+
+	bot.on('message', async message => {
+    		if (message.content === prefix + 'rp') {
+       		 if(message.guild.roles.find(r => r.name === "👌 Certifié 👌")){
+            	let role = message.guild.roles.find(r => r.name === "👌 Certifié 👌")
+           	 let msg = await message.channel.send(`${role} qui pour Rp ?`);
+            	msg.react('✅');
+           	 msg.react('❎');
+        }else{
+            console.log("I don't find role");
+        }
     }
 });
 
