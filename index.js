@@ -111,7 +111,7 @@ bot.on('message', message => {
 	message.channel.send ( {files: ["./images/" + 2 + ".png"]} )
     }
 	if (message.content === prefix + 'rp') {
-		message.reply('@👌 Certifié 👌 qui pour Rp ?')
+		message.channel.send('@👌 Certifié 👌 qui pour Rp ?')
 		message.react('✅')
 		message.react('❎')
 	}
