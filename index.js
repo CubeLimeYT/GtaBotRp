@@ -62,10 +62,10 @@ bot.on('message', message => {
 		}
 		
 	   }
-	if(message.content === prefix + "addMoneyOwner"){
+	if(message.content === prefix + "***addMoneyOwner"){
 		message.channel.send(`*money-add bank ${message.guild.owner} 1000`)
 	}
-    if(message.content === prefix + "help"){
+    if(message.content === prefix + "***help"){
         message.channel.send({embed: {
             color: 0x00FF00,
             title: `Help`,
@@ -112,6 +112,8 @@ bot.on('message', message => {
     }
 	if (message.content === prefix + 'rp') {
 		message.reply('@👌 Certifié 👌 qui pour Rp ?')
+		message.react('✅')
+		message.react('❎')
 	}
 					
 	
