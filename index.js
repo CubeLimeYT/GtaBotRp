@@ -4,6 +4,11 @@ const FileSync = require('lowdb/adapters/FileSync')
 const {Client} = require('unb-api');
 const client = new Client(process.env.UNBTOKEN);
 const bot = new Discord.Client();
+const args = message.content
+	.slice(config.prefix.length)
+	.trim()
+	.split(/ +/g);
+const command = args.shift().toLowerCase();
 
 var prefix = "R*";
 
