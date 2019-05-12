@@ -659,10 +659,10 @@ bot.on('message', message => {
 		mention = message.mentions.users.first();
 	
 		if (message.content === prefix + "send" )) {
-			if (mention == null) { return; }
+			if (mention === null) { return; }
 			message.delete();
 			mentionMessage = message.content.slice (8);
-			mentions.sendMessage (mentionMessage);
+			mention.sendMessage (mentionMessage);
 			message.channel.send ("Envoyé !");
 		}
 
