@@ -650,23 +650,23 @@ bot.on('message', message => {
     }
 });
 
-client.on ("message", (message) => {
+	client.on ("message", (message) => {
 	
-	msg = message.content.toLowerCase();
+		msg = message.content.toLowerCase();
 	
-	if (message.author.bot) return;
+		if (message.author.bot) return;
 	
-	mention = message.mentions.users.first();
+		mention = message.mentions.users.first();
 	
-	if (msg.startWith (prefix + "send" )) {
-		if (mention == null) { return; }
-		message.delete();
-		mentionMessage = message.content.slice (8);
-		mentions.sendMessage (mentionMessage);
-		message.channel.send ("Envoyé !");
-	}
+		if (msg.startWith (prefix + "send" )) {
+			if (mention == null) { return; }
+			message.delete();
+			mentionMessage = message.content.slice (8);
+			mentions.sendMessage (mentionMessage);
+			message.channel.send ("Envoyé !");
+		}
 
 	
-});
+	});
 
 bot.login(process.env.SECRET);
