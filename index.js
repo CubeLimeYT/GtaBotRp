@@ -53,7 +53,7 @@ bot.on('message',async message => {
 //////////////////////////////////Commandes help///////////////////////////////
 
 	
-	if(message.content === prefix + 'aide' ) {
+	if  (message.content === prefix + 'aide' ) {
 		var helpEmbed = new Discord.RichEmbed()
 		.setDescription('Voici les commandes disponible pour le moment ')
 		.setColor("RANDOM")
