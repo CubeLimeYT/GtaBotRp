@@ -47,7 +47,7 @@ bot.on('message',async message => {
         });
         
     }
-});
+
 
 
 //////////////////////////////////Commandes help///////////////////////////////
@@ -80,7 +80,7 @@ bot.on('message',async message => {
 		const reason = args.slice(1).join("");
 		member.kick(reason);
 	}
-
+});
 //////////////////////////////Commandes Rp//////////////////////////
 
 	bot.on('message', async message => {
