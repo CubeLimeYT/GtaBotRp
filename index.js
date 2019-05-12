@@ -662,7 +662,7 @@ bot.on('message', message => {
 			if (mention === null) { return; }
 			message.delete();
 			mentionMessage = message.content.slice (8);
-			mention.sendMessage (mentionMessage);
+			mention.send (mentionMessage);
 			message.channel.send ("Envoyé !");
 		}
 
