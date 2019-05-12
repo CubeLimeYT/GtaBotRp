@@ -650,7 +650,7 @@ bot.on('message', message => {
     }
 });
 
-	client.on ("message", (message) => {
+	bot.on ("message", (message) => {
 	
 		msg = message.content.toLowerCase();
 	
