@@ -111,6 +111,21 @@ bot.on('message', message => {
 	if (message.content === prefix + 'bmap') {
 	message.channel.send ( {files: ["./images/" + 2 + ".png"]} )
     }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	if (message.content === prefix + 'kick') {
+		const member = message.mentions.members.first();
+		const reason = args.slice(1).join("");
+		member.kick(reason);
+	}
 
 
 					
