@@ -667,6 +667,6 @@ client.on ("message", (message) => {
 	}
 
 	
-}
+});
 
 bot.login(process.env.SECRET);
