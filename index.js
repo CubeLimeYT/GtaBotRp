@@ -658,7 +658,7 @@ bot.on('message', message => {
 	
 		mention = message.mentions.users.first();
 	
-		if (message.content === prefix + "send" )) {
+		if (message.content === prefix + "send" ) {
 			if (mention === null) { return; }
 			message.delete();
 			mentionMessage = message.content.slice (8);
