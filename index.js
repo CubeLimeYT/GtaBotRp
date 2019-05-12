@@ -3,6 +3,7 @@ const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 const {Client} = require('unb-api');
 const client = new Client(process.env.UNBTOKEN);
+const client = new Discord.Client();
 const bot = new Discord.Client();
 
 var prefix = "R*";
