@@ -105,9 +105,9 @@ bot.on('message', async message => {
 
     let mention = message.mentions.users.first();
 
-    if(msg.startsWith (prefix + "send")){
+    if(message.content === prefix + "send") {
         if(mention === null) { return message.channel.send("Veuillez spécifier une personne")}
-        mentionMessage = message.content.slice (29);
+        mentionMessage = message.content.slice (28);
         mention.sendMessage(mentionMessage);
         message.reply("message envoyé");
     }
