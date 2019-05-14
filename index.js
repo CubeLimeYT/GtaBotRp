@@ -4,11 +4,7 @@ const FileSync = require('lowdb/adapters/FileSync')
 const {Client} = require('unb-api');
 const client = new Client(process.env.UNBTOKEN);
 const bot = new Discord.Client();
-const args = message.content
-	.slice(config.prefix.length)
-	.trim()
-	.split(/ +/g);
-const command = args.shift().toLowerCase();
+
 
 var prefix = "R*";
 
@@ -106,23 +102,16 @@ bot.on('message',async message => {
 
 	bot.on ("message", (message) => {
 	
-		msg = message.content.toLowerCase();
-	
-		if (message.author.bot) return;
-	
-		mention = message.mentions.users.first();
-	
-		if (message.content === prefix + "send" ) {
-			if (mention === null) { return; }
-			message.delete();
-			mentionMessage = message.content.slice (8);
-			mention.send (mentionMessage);
-			message.channel.send ("Envoyé !");
-		}
+    let msg = message.content.toLowerCase();    
 
-	
-	});
+    let mention = message.mentions.users.first();
 
+    if(msg.startsWith (prefix + "send")){
+        if(mention === null) { return message.channel.send("Veuillez spécifier une personne")}
+        mentionMessage = message.content.slice (28);
+        mention.sendMessage(mentionMessage);
+        message.reply("message envoyé");
+    }
 ///////////////////////////////FINISH///////////////////////////
 
 bot.login(process.env.SECRET);
