@@ -47,7 +47,7 @@ bot.on('message',async message => {
             },2000);
         });
         
-    }
+    })
 
 
 
