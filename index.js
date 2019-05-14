@@ -30,12 +30,13 @@ bot.on('ready', () => {
 
 bot.on('message', message => {
 	
-	let msg = message.content.toLowerCase();	
+	let msg = message.content;	
 
-	let mention = message.mentions.users.first();
+	
 
 	if(msg.startsWith (prefix + "send")){
-		if(mention === null) { return message.channel.send("Veuillez spécifier une personne")}
+		if(!message.mentions.users.first) { return message.channel.send("Veuillez spécifier une personne")}
+		let mention = message.mentions.users.first();
 		mentionMessage = message.content.slice (29);
 		mention.sendMessage(mentionMessage);
 		message.reply("message envoyé");
