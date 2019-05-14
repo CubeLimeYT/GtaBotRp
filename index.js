@@ -47,13 +47,7 @@ bot.on('message',async message => {
             },2000);
         });
         
-}})
-
-
-
-//////////////////////////////////Commandes help///////////////////////////////
-
-bot.on('message', async message => {
+	//////////////////////////////////Commandes help///////////////////////////////    
 	if (message.content === prefix + 'aide' ) {
 		var helpEmbed = new Discord.RichEmbed()
 		.setDescription('Voici les commandes disponible pour le moment ')
@@ -65,16 +59,16 @@ bot.on('message', async message => {
 		message.channel.send(helpEmbed)
 	}
 
-//////////////////////////////////Commandes Map////////////////////////////
+	//////////////////////////////////Commandes Map////////////////////////////
 	if (message.content === prefix + 'dmap') {
         message.channel.send ( {files: ["./images/" + 1 + ".jpg"]} ) 
-    }
+    	}
 
 	if (message.content === prefix + 'bmap') {
 	message.channel.send ( {files: ["./images/" + 2 + ".png"]} )
-    }
+    	}
 	
-///////////////////////////////Commandes Administration//////////////////////
+	///////////////////////////////Commandes Administration//////////////////////
 	
 	if (message.content === prefix + 'kick') {
 		const member = message.mentions.members.first();
@@ -82,22 +76,23 @@ bot.on('message', async message => {
 		member.kick(reason);
 	}
 
-//////////////////////////////Commandes Rp//////////////////////////
+	//////////////////////////////Commandes Rp//////////////////////////
 
 
-    if (message.content === prefix + 'rp') {
-    message.delete().catch();
-        if(message.guild.roles.find(r => r.name === "👌 Certifié 👌")){
-        let role = message.guild.roles.find(r => r.name === "👌 Certifié 👌")
-        let msg = await message.channel.send(`${role} qui pour Rp ?`);
-        	msg.react('✅');
-       		msg.react('❎');
-	}else{
-    console.log("I don't find role");
+    	if (message.content === prefix + 'rp') {
+    	message.delete().catch();
+        	if(message.guild.roles.find(r => r.name === "👌 Certifié 👌")){
+        		let role = message.guild.roles.find(r => r.name === "👌 Certifié 👌")
+        		let msg = await message.channel.send(`${role} qui pour Rp ?`);
+        		msg.react('✅');
+       			msg.react('❎');
+		}else{
+    			console.log("I don't find role");
+	}
 }
-}
 
-})
+}})
+
 
 ////////////////////////////////Commandes DM'S/////////////////////////
 
