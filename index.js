@@ -84,19 +84,7 @@ bot.on('message',async message => {
 
 //////////////////////////////Commandes Rp//////////////////////////
 
-	bot.on('message', async message => {
-    		if (message.content === prefix + 'rp') {
-			message.delete().catch();
-       		 if(message.guild.roles.find(r => r.name === "👌 Certifié 👌")){
-            	let role = message.guild.roles.find(r => r.name === "👌 Certifié 👌")
-           	 let msg = await message.channel.send(`${role} qui pour Rp ?`);
-            	msg.react('✅');
-           	 msg.react('❎');
-        }else{
-            console.log("I don't find role");
-        }
-    }
-});
+
 
 ////////////////////////////////Commandes DM'S/////////////////////////
 
