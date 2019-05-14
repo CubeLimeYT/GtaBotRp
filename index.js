@@ -53,7 +53,7 @@ bot.on('message',async message => {
 
 //////////////////////////////////Commandes help///////////////////////////////
 
-	
+bot.on('message', async message => {
 	if (message.content === prefix + 'aide' ) {
 		var helpEmbed = new Discord.RichEmbed()
 		.setDescription('Voici les commandes disponible pour le moment ')
@@ -64,7 +64,7 @@ bot.on('message',async message => {
 		.setFooter(`EN cours de mise à jour !`)
 		message.channel.send(helpEmbed)
 	}
-	
+
 //////////////////////////////////Commandes Map////////////////////////////
 	if (message.content === prefix + 'dmap') {
         message.channel.send ( {files: ["./images/" + 1 + ".jpg"]} ) 
@@ -91,5 +91,5 @@ bot.on('message',async message => {
 
 	
 ///////////////////////////////FINISH///////////////////////////
-
+})
 bot.login(process.env.SECRET);
