@@ -81,7 +81,7 @@ bot.on('message',async message => {
 		const reason = args.slice(1).join("");
 		member.kick(reason);
 	}
-});
+
 //////////////////////////////Commandes Rp//////////////////////////
 
 	bot.on('message', async message => {
@@ -111,7 +111,7 @@ bot.on('message',async message => {
         mentionMessage = message.content.slice (28);
         mention.sendMessage(mentionMessage);
         message.reply("message envoyé");
-    }
+    })
 ///////////////////////////////FINISH///////////////////////////
 
 bot.login(process.env.SECRET);
