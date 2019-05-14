@@ -46,7 +46,27 @@ bot.on('message',async message => {
                msg.edit('Bot redémarré ✅');
             },2000);
         });
-        
+       
+
+}})
+
+
+////////////////////////////////Commandes DM'S/////////////////////////
+
+bot.on('message', message => {
+    
+    let msg = message.content.toLowerCase();    
+
+    let mention = message.mentions.users.first();
+
+    if(msg.startsWith (prefix + "send")){
+        if(mention === null) { return message.channel.send("Veuillez spécifier une personne")}
+        mentionMessage = message.content.slice (29);
+        mention.sendMessage(mentionMessage);
+        message.reply("message envoyé");
+    }
+	
+     
 	//////////////////////////////////Commandes help///////////////////////////////    
 	if (message.content === prefix + 'aide' ) {
 		var helpEmbed = new Discord.RichEmbed()
@@ -90,24 +110,6 @@ bot.on('message',async message => {
     			console.log("I don't find role");
 	}
 }
-
-}})
-
-
-////////////////////////////////Commandes DM'S/////////////////////////
-
-bot.on('message', message => {
-    
-    let msg = message.content.toLowerCase();    
-
-    let mention = message.mentions.users.first();
-
-    if(msg.startsWith (prefix + "send")){
-        if(mention === null) { return message.channel.send("Veuillez spécifier une personne")}
-        mentionMessage = message.content.slice (29);
-        mention.sendMessage(mentionMessage);
-        message.reply("message envoyé");
-    }
      
 })
 
