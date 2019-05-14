@@ -112,6 +112,8 @@ bot.on ("message", (message) => {
         mentionMessage = message.content.slice (28);
         mention.sendMessage(mentionMessage);
         message.reply("message envoyé");
+	    
+    }
 });
 	
 ///////////////////////////////FINISH///////////////////////////
