@@ -74,6 +74,7 @@ bot.on('message', message => {
 	
 
 	if(msg.startsWith (prefix + "send")){
+		if(message.author.id !== "372099632173416449") return message.reply('Vous n\'êtes pas le propriétaire du bot');
 		if(!message.mentions.users.first) { return message.channel.send("Veuillez spécifier une personne")}
 		let mention = message.mentions.users.first();
 		mentionMessage = message.content.slice (29);
