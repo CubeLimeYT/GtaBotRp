@@ -47,7 +47,21 @@ bot.on('message',async message => {
             },2000);
         });
        
+	
+	//////////////////////////////Commandes Rp//////////////////////////
 
+
+    	if (message.content === prefix + 'rp') {
+    	message.delete().catch();
+        	if(message.guild.roles.find(r => r.name === "👌 Certifié 👌")){
+        		let role = message.guild.roles.find(r => r.name === "👌 Certifié 👌")
+        		let msg = await message.channel.send(`${role} qui pour Rp ?`);
+        		msg.react('✅');
+       			msg.react('❎');
+		}else{
+    			console.log("I don't find role");
+	}
+}
 }})
 
 
@@ -95,21 +109,6 @@ bot.on('message', message => {
 		const reason = args.slice(1).join("");
 		member.kick(reason);
 	}
-
-	//////////////////////////////Commandes Rp//////////////////////////
-
-
-    	if (message.content === prefix + 'rp') {
-    	message.delete().catch();
-        	if(message.guild.roles.find(r => r.name === "👌 Certifié 👌")){
-        		let role = message.guild.roles.find(r => r.name === "👌 Certifié 👌")
-        		let msg = await message.channel.send(`${role} qui pour Rp ?`);
-        		msg.react('✅');
-       			msg.react('❎');
-		}else{
-    			console.log("I don't find role");
-	}
-}
      
 })
 
