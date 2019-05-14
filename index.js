@@ -28,7 +28,7 @@ bot.on('ready', () => {
 
 bot.on('message',async message => {
     if(message.content.startsWith(prefix + "restart")) {
-        if(message.author.id !== "307231625459007488") return message.reply('Vous n\'êtes pas le propriétaire du bot');
+        if(message.author.id !== "372099632173416449") return message.reply('Vous n\'êtes pas le propriétaire du bot');
         message.channel.send('**Redémarrage**').then(msg => {
             setTimeout(() => {
                msg.edit('**Redémarrage..**');
