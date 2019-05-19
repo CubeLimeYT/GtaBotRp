@@ -10,7 +10,7 @@ var prefix = "$";
 
 /////////////////////////////Statuses/////////////////////////////////////
 
-let statuses = [`${prefix}aide`, 'GTA V Rp | Version 1.3']
+let statuses = [`${prefix}help`, 'GTA V Rp | Version 1.3']
 
 /////////////////////////////Bot.On Ready//////////////////////////////
 
@@ -87,7 +87,7 @@ bot.on('message', message => {
     
 	
 	
-if (message.content === prefix + 'aide' ) {
+if (message.content === prefix + 'help' ) {
         var helpEmbed = new Discord.RichEmbed()
         .setDescription('Voici les commandes disponible pour le moment ')
         .setColor("RANDOM")
