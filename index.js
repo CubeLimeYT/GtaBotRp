@@ -91,7 +91,7 @@ if (message.content === prefix + 'help' ) {
         var helpEmbed = new Discord.RichEmbed()
         .setDescription('Voici les commandes disponible pour le moment ')
         .setColor("RANDOM")
-	.addField(`Nouveautés de la 1.4`, ` `)
+	.addField(`Nouveautés de la 1.4`, `Sortie le 20/05/2019 à 00H45`)
 	.addField(`================================`, `===============================`)
 	.addField(`${prefix}Adm`, `Vous drop les commandes d'administrateur`)
 	.addField('================================', '===============================')
