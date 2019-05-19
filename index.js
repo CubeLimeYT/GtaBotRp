@@ -10,7 +10,7 @@ var prefix = "$";
 
 /////////////////////////////Statuses/////////////////////////////////////
 
-let statuses = [`${prefix}help`, 'GTA V Rp | Version 1.3']
+let statuses = [`${prefix}help | Version 1.4`, `GTA V Rp | Version 1.4`]
 
 /////////////////////////////Bot.On Ready//////////////////////////////
 
@@ -20,7 +20,7 @@ bot.on('ready', () => {
 
 		bot.user.setPresence({ game: { name: status }, status: 'online'});
 	}, 10000)
-    bot.user.setActivity("GTA V Rp | Version 1.2 ");
+    bot.user.setActivity("GTA V Rp | Version 1.4 ");
     console.log("Le robot est prêt à être utilisé !");
 });
 
@@ -91,6 +91,7 @@ if (message.content === prefix + 'help' ) {
         var helpEmbed = new Discord.RichEmbed()
         .setDescription('Voici les commandes disponible pour le moment ')
         .setColor("RANDOM")
+	.addField(`Nouveautés de la 1.4`, ` `)
 	.addField(`================================`, `===============================`)
 	.addField(`${prefix}Adm`, `Vous drop les commandes d'administrateur`)
 	.addField('================================', '===============================')
@@ -142,7 +143,7 @@ if (message.content === prefix + 'help' ) {
 		let server_name = message.guild.name
 		let server_size = message.guild.members.size
 		message.channel.send('Serveur : ' + server_name + '\nPersonnes : ' + server_size);
-		message.channel.send(`Commandes en cours de développement`);
+		message.channel.send(`⚠️ Commandes en cours de développement ⚠️`);
 	}
 	
 	
