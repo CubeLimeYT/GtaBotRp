@@ -46,7 +46,7 @@ bot.on('message',async message => {
                msg.edit('Bot redémarré ✅');
             },2000);
         });
-       
+     }  
     
     //////////////////////////////Commandes Rp//////////////////////////
 
@@ -60,9 +60,9 @@ bot.on('message',async message => {
                    msg.react('❎');
         }else{
                 console.log("I don't find role");
-    }
-}
-}})
+    	}
+	}
+});
 
 
 ////////////////////////////////Commandes DM'S/////////////////////////
