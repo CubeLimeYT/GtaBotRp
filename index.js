@@ -21,7 +21,7 @@ bot.on('ready', () => {
 		bot.user.setPresence({ game: { name: status }, status: 'online'});
 	}, 10000)
     bot.user.setActivity("GTA V Rp | Version 1.2 ");
-    console.log("Bot lancer !");
+    console.log("Le robot est prêt à être utilisé !");
 });
 
 /////////////////////////////////Commandes Restart Owner Bot/////////////////
@@ -98,6 +98,8 @@ if (message.content === prefix + 'help' ) {
         .addField(`${prefix}bmap`, `Pour afficher les arrêts de bus de la map`)
         .addField('================================', '===============================')
 	.addField(`${prefix}rp`, `Pour afficher une sondage pour savoir qui veut Rp`)
+	.addField(`${prefix}ping`, `Affiche vos ms`)
+	.addField(`${prefix}serveur`, `Vous donnes quelques infos sur le serveur`)
         .addField('================================', '===============================')
 	.setFooter(`Actuellement en développement :) `)
         message.channel.send(helpEmbed)
@@ -107,6 +109,8 @@ if (message.content === prefix + 'help' ) {
 	
     ///////////////////////////////Réponses au +aide/////////////////////////////
 	
+	
+	//$Adm
 	if (message.content === prefix + 'Adm')  {
 		if ( !message.member.hasPermission('ADMINISTRATOR')){
 		message.react('❎')
@@ -127,6 +131,21 @@ if (message.content === prefix + 'help' ) {
 			message.channel.send(adminEmbed);
 	  }
 	}
+	
+	//$ping
+		if (message.content === prefix + "ping") {
+        message.channel.send(`Pong en ${Date.now() - message.createdTimestamp} ms`)
+		}
+	
+	//$serveur
+	if (message.content === prefix + 'Server') {
+		let server_name = message.guild.name
+		let server_size = message.guild.members.size
+		message.channel.send('Serveur : ' + server_name + '\nPersonnes : ' + server_size);
+	}
+	
+	
+	
     //////////////////////////////////Commandes Map////////////////////////////
     if (message.content === prefix + 'dmap') {
         message.channel.send ( {files: ["./images/" + 1 + ".jpg"]} ) 
