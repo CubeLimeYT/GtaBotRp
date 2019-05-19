@@ -143,7 +143,7 @@ if (message.content === prefix + 'help' ) {
 		let server_name = message.guild.name
 		let server_size = message.guild.members.size
 		message.channel.send('Serveur : ' + server_name + '\nPersonnes : ' + server_size);
-		message.channel.send(`⚠️ Commandes en cours de développement ⚠️`);
+		message.channel.send(`⚠️ **Commandes en cours de développement** ⚠️`);
 	}
 	
 	
