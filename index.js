@@ -91,18 +91,24 @@ if (message.content === prefix + 'aide' ) {
         var helpEmbed = new Discord.RichEmbed()
         .setDescription('Voici les commandes disponible pour le moment ')
         .setColor("RANDOM")
-	.addField('===============================', '===============================')
+	.addField(`================================`, `===============================`)
+	.addField(`${prefix}Adm`, `Vous drop les commandes d'administrateur`)
+	.addField('================================', '===============================')
         .addField(`${prefix}dmap`, `Pour afficher les département de la map`)
         .addField(`${prefix}bmap`, `Pour afficher les arrêts de bus de la map`)
-        .addField('===============================', '===============================')
+        .addField('================================', '===============================')
 	.addField(`${prefix}rp`, `Pour afficher une sondage pour savoir qui veut Rp`)
-        .addField('===============================', '===============================')
-	.setFooter(`EN cours de mise à jour !`)
+        .addField('================================', '===============================')
+	.setFooter(`Actuellement en développement :) `)
         message.channel.send(helpEmbed)
     }
 
 	
 	
+    ///////////////////////////////Réponses au +aide/////////////////////////////
+	
+	if (message.content === prefix + 'Adm') {
+		
 	
     //////////////////////////////////Commandes Map////////////////////////////
     if (message.content === prefix + 'dmap') {
