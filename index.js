@@ -6,7 +6,7 @@ const client = new Client(process.env.UNBTOKEN);
 const bot = new Discord.Client();
 
 
-var prefix = "+";
+var prefix = "$";
 
 /////////////////////////////Statuses/////////////////////////////////////
 
@@ -107,9 +107,26 @@ if (message.content === prefix + 'aide' ) {
 	
     ///////////////////////////////Réponses au +aide/////////////////////////////
 	
-	if (message.content === prefix + 'Adm') {
-		
-	
+	if (message.content === prefix + 'Adm')  {
+		if ( !message.member.hasPermission('ADMINISTRATOR')){
+		message.react('❎')
+		  .then(console.log)
+		  .catch(console.error);
+		message.channel.send(`Désolé, vous n'êtes pas administrateur sur ce serveur.`);
+	}else{
+		let adminEmbed = new Discord.RichEmbed()
+					.setDescription(`Panneau d'aides pour administrateurs`)
+					.setColor('RANDOM')
+					.addField(`=============================`, `============================`)
+				        .addField(`${prefix}kick`, `Pour kicker une personnes du serveur`)
+					.addField(`${prefix}ban`, `Pour bannir une personne du serveur`)
+					.addField(`=============================`, `============================`)
+					.addField(`${prefix}userInfo`, `Affichage d'infos de la personnes mentionner`)
+					.addField(`=============================`, `============================`)
+					.setFooter('Actuellement en développement')
+			message.channel.send(adminEmbed);
+	  }
+	}
     //////////////////////////////////Commandes Map////////////////////////////
     if (message.content === prefix + 'dmap') {
         message.channel.send ( {files: ["./images/" + 1 + ".jpg"]} ) 
