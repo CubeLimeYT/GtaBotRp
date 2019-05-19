@@ -6,11 +6,11 @@ const client = new Client(process.env.UNBTOKEN);
 const bot = new Discord.Client();
 
 
-var prefix = "R*";
+var prefix = "+";
 
 /////////////////////////////Statuses/////////////////////////////////////
 
-let statuses = [`${prefix}aide`, 'GTA V Rp | Version 1.2']
+let statuses = [`${prefix}aide`, 'GTA V Rp | Version 1.3']
 
 /////////////////////////////Bot.On Ready//////////////////////////////
 
@@ -84,17 +84,26 @@ bot.on('message', message => {
 	}
 	
      //////////////////////////////////Commandes help///////////////////////////////    
-    if (message.content === prefix + 'aide' ) {
-        var helpEmbed = new Discord.RichEmbed()
-        .setDescription('Voici les commandes disponible pour le moment ')
-        .setColor("RANDOM")
-        .addField(`${prefix}dmap`, `Pour afficher les département de la map`)
-        .addField(`${prefix}bmap`, `Pour afficher les arrêts de bus de la map`)
-        .addField(`${prefix}rp`, `Pour afficher une sondage pour savoir qui veut Rp`)
-        .setFooter(`EN cours de mise à jour !`)
-        message.channel.send(helpEmbed)
-    }
+    
+	
+	
+	if (message.content === prefix + 'aide' ) {
+        	var helpEmbed = new Discord.RichEmbed()
+        	.setDescription('Voici les commandes disponible pour le moment ')
+        	.setColor("RANDOM")
+		.addField('', '')
+        	.addField(`${prefix}dmap`, `Pour afficher les département de la map`)
+        	.addField(`${prefix}bmap`, `Pour afficher les arrêts de bus de la map`)
+        	.addField('', '')
+		.addField(`${prefix}rp`, `Pour afficher une sondage pour savoir qui veut Rp`)
+        	.addField('', '')
+		.setFooter(`EN cours de mise à jour !`)
+        	message.channel.send(helpEmbed)
+    	}
 
+	
+	
+	
     //////////////////////////////////Commandes Map////////////////////////////
     if (message.content === prefix + 'dmap') {
         message.channel.send ( {files: ["./images/" + 1 + ".jpg"]} ) 
