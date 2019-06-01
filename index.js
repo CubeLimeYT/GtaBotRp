@@ -50,74 +50,7 @@ bot.on('message',async message => {
 	
 	
 	
-	    let msg = message.content.toLowerCase();    
-
-
-        let messageArray = message.content.split(" ");
-    let args = messageArray.slice(1);
-
-	
-	//////////////////////Setup///////////////////////////
-    if(msg.startsWith (prefix + 'setup')){
-        if(!message.member.hasPermission('ADMINISTRATOR')){
-                  message.channel.send("Vous n'êtes pas administrateur")   
-            }else{
-                  if(!message.guild.member(bot.user).hasPermission('ADMINISTRATOR')){
-                        message.channel.send("Je n'ai pas la permission de pouvoir créer des salons textuel");
-                  }else{
-                        message.guild.createChannel("log-gtav-rp").then(channel => {
-                              channel.setTopic('Logs')
-                        });
-                  }
-            }
-    }
-	
-	//////////////Commande kick//////////////////
- if(msg.startsWith (prefix + 'kick')){
-        if(!message.member.hasPermission("KICK_MEMBERS")){
-        message.channel.send(message);
-      }else{
-          var memberkick = message.mentions.members.first();
-          if(!memberkick){
-              message.channel.send(`:warning: **Vous ne n'avez pas mentionné la personne à kick**`);
-          }else{
-              if(!memberkick.kickable){
-                  message.channel.send(message)
-              }else{
-                  let reason = args.slice(1).join(' ');
-                if(!reason) reason = "Aucune raison";
-                  let serveurinfo = message.guild.name;
-                      try {
-                          await memberkick.send(`Vous avez été kick du serveur: ${serveurinfo} pour ${reason}`);
-                      }catch(e) {
-                          console.log(`impossible de prévenir l'Utilisateur ${memberkick} qu'il a été kick du serveur ${serveurinfo} pour ${reason}`)
-                          message.channel.send(`impossible de prévenir l'Utilisateur ${memberkick} qu'il a été kick du serveur ${serveurinfo} pour ${reason}`)
-                      }
-                          let Pkick = message.author;
-
-                          let kickEmbed = new Discord.RichEmbed()
-                        .setDescription(`***___Kick Pannel___***`)
-                        .setColor(`#e56b00`)
-                        .addField(`**Utilisateur kick**`, `${memberkick} l'Id est ${memberkick.id}`)   
-                        .addField(`**Kick par **`, Pkick)
-                        .addField(`**Kick de**`, message.channel)
-                        .addField(`**Kick à**`, message.createdAt)
-                        .addField(`**Raison**`, reason)
-
-                        let kickChannel = message.guild.channels.find(`name`, `log-gtav-rp`);
-                        if(!kickChannel){
-                             message.channel.send(`Je ne trouve aucun channel s'apellant **log-gtav-rp**, faite ${prefix}setup pour afficher les logs de kick et ban`)
-                             message.channel.send(kickEmbed);
-                        }else{
-                            message.guild.channels.find(`name`, `log-gtav-rp`).send(kickEmbed);
-                        }
-                        
-                        memberkick.kick()
-
-          }
-      }
-  }
-    }
+	   
     
     //////////////////////////////Commandes Rp//////////////////////////
 
